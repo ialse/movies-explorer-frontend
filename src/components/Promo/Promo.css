@@ -1,4 +1,121 @@
 .promo {
-  padding: 0 10% 0 10%;
+  padding: 0 5.5% 75px 5.5%;
   background: #073042;
+  color: #fff;
+}
+
+.promo__header {
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.promo__signup {
+  text-decoration: none;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.promo__signup:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.5s ease-out;
+}
+
+.promo__signin {
+  margin-left: 30px;
+  width: 76px;
+  height: 32px;  
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+  color: #000;
+  background: #3ddc84;
+  border: none;
+  border-radius: 3px;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.promo__signin:hover {
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.5s ease-out;
+}
+
+.promo__main {
+  display: flex;
+  justify-content: space-between;
+  margin: 75px 0 0 0;
+}
+
+.promo__title {
+  font-size: 50px;
+  line-height: 1.16;
+  max-width: 640px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.promo__subtitle {
+  font-size: 13px;
+  line-height: 1.21;
+  opacity: 0.5;
+  font-weight: 400;
+  font-style: normal;
+  max-width: 310px;
+  margin: 36px 0 0 0;
+}
+
+.promo__image {
+  width: 310px;
+  height: 304px;
+  object-fit: contain;
+}
+
+.promo__button {
+  position: relative;
+  width: 129px;
+  height: 36px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+  background: #073042;
+  border: none;
+  margin: 84px 0 0 0;
+  padding: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.promo__button::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  border: 1px solid #fff;
+  opacity: 0.6;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.promo__button:focus {
+  outline: none;
+  
+}
+
+.promo__button:hover {
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.5s ease-out;
 }

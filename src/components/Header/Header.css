@@ -1,0 +1,20 @@
+.header {
+    padding: 0 5.5% 70px 5.5%;
+    background: #202020;
+    color: #fff;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+.header__link {
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+  }
+
+.header__link:hover {
+    opacity: 0.4;
+    transition: opacity 0.5s ease-out;
+  }

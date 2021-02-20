@@ -1,0 +1,17 @@
+.cards {
+    padding: 70px 5.5% 30px 5.5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 24px;
+}
+
+.more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto 80px auto;
+    max-width: 320px;
+    height: 36px;
+    background: #2f2f2f;
+    border-radius: 6px;
+}

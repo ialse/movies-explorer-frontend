@@ -14,24 +14,25 @@ import Login from '../Login/Login';
 function App() {
     return (
         <div className="page" >
-            <Header />
+
             <Switch>
-                <Route path="/">
+                <Route exact path="/">
                     <Main />
                 </Route>
-                {/*<Route path="/movies">
+                <Route exact path="/movies">
+                    <Header />
                     <Movies />
                 </Route>
-                <Route path="/saved-movies">
+                {/*<Route exact path="/saved-movies">
                     <SavedMovies />
                 </Route>
-                <Route path="/profile">
+                <Route exact path="/profile">
                     <Profile />
                 </Route>
-                <Route path="/sign-up">
+                <Route exact path="/sign-up">
                     <Register />
                 </Route>
-                <Route path="/sign-in">
+                <Route exact path="/sign-in">
                     <Login />
     </Route>*/}
             </Switch >

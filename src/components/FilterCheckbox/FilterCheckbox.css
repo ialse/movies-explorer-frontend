@@ -1,0 +1,14 @@
+.filter {
+    display: flex;
+    color: #fff;
+    margin-right: 30px ;
+}
+
+.filter__pic {
+    margin-right: 14px;
+}
+.filter__name {
+    font-size: 14px;
+    line-height: 1.38;
+    font-weight: 400;
+}

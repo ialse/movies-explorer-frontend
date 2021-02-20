@@ -1,5 +1,21 @@
+import './Footer.css';
+
 function Footer() {
-    return null;
+    return (
+        <footer className="footer">
+            <p className="footer__text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
+            <div className="footer__line"></div>
+            <div className="footer__main">
+                <p className="footer__copyright">&copy; 2021</p>
+                <div className="footer__links">
+                    <a className="footer__link" href="https://github.com/ialse/how-to-learn" target="_blank">Яндекс.Практикум</a>
+                    <a className="footer__link" href="https://vk.com/id35075128" target="_blank">Facebook</a>
+                    <a className="footer__link" href="https://github.com/ialse" target="_blank">Github</a>
+                </div>
+            </div>
+
+        </footer>
+    );
 }
 
 export default Footer;
