@@ -14,7 +14,6 @@ import Login from '../Login/Login';
 function App() {
     return (
         <div className="page" >
-
             <Switch>
                 <Route exact path="/">
                     <Main />
@@ -23,16 +22,18 @@ function App() {
                     <Header />
                     <Movies />
                 </Route>
-                {/*<Route exact path="/saved-movies">
+                <Route exact path="/saved-movies">
+                    <Header />
                     <SavedMovies />
                 </Route>
                 <Route exact path="/profile">
+                    <Header />
                     <Profile />
                 </Route>
                 <Route exact path="/sign-up">
                     <Register />
                 </Route>
-                <Route exact path="/sign-in">
+                {/*<Route exact path="/sign-in">
                     <Login />
     </Route>*/}
             </Switch >

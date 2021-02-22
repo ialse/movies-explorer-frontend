@@ -1,8 +1,14 @@
 .header {
-    padding: 0 5.5% 70px 5.5%;
+    padding: 0 0 70px 0;
     background: #202020;
-    color: #fff;
+    color: #fff;       
+    width: 100%;
+  }
+
+.header__container {
+    max-width: 1140px;
     height: 74px;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;

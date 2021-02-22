@@ -1,8 +1,9 @@
 .card {
     background: #222;
-   /* width: 364px;
-    height: 271px;*/
+    max-width: 364px;
+   /* height: 271px;*/
     overflow: hidden;
+
 }
 
 .card__header {
@@ -14,7 +15,8 @@
     font-size: 15px;
     line-height: 1.21;
     font-weight: 500;
-    margin: 14px 10px 9px 14px;
+    padding: 14px 10px 9px 14px;
+    margin: 0;
     color: #fff;
 }
 
@@ -40,9 +42,27 @@
     border: none;
     padding: 0;
     margin: 0;
+    opacity: 1;
+    transition: all 0.5s ease-out;
+}
+
+.card__button:hover {
+    background-image: url("../../images/unsave.svg");
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all 0.5s ease-out;    
+}
+
+/*Сделал временно,чтоб посмотреть*/
+.card__button:focus {
+    background-image: url("../../images/unsave.svg");
+    outline: none;
 }
 
 .card__image {
     max-height: 203px;
-    object-fit: cover;
+    object-fit: contain;
+    display: flex;
+    margin: auto;
+    align-items: center;
 }

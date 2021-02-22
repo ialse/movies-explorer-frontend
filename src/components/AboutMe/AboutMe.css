@@ -1,8 +1,14 @@
 .about-me {
-    padding: 110px 5.5% 100px 5.5%;
+    padding: 110px 0 100px 0;
     background: #202020;
     color: #fff;
+    width: 100%;
 }
+
+.about-me__container {
+    max-width: 1140px;
+    margin: auto;
+  }
 
 .about-me__title {
     font-size: 22px;
