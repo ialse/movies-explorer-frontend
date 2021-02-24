@@ -3,6 +3,7 @@
     background: #202020;
     color: #fff;
     width: 100%;
+    flex-grow: 1;
 }
 
 .profile__container {
@@ -33,6 +34,8 @@
     font-size: 11px;
     line-height: 1.21;
     font-weight: 500;
+    display: block;
+    width: 40px;
 }
 
 .profile__input {
@@ -44,6 +47,7 @@
     border: none;
     padding: 0;
     text-align: end;
+    width: 100%;
 }
 
 .profile__input:focus {
@@ -57,7 +61,7 @@
     margin: 16px 0 17px 0;
 }
 
-.profile__edit {
+.profile__btn-edit {
     display: block;
     margin: 220px auto 16px auto;
     padding: 0;

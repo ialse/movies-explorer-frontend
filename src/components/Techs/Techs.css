@@ -1,12 +1,12 @@
 .techs {
-    padding: 110px 0 90px 0;
     background: #272727;
     color: #fff;
     width: 100%;
 }
 
 .techs__container {
-    max-width: 1140px;
+    max-width: 1280px;
+    padding: 110px 5.5% 90px 5.5%;
     margin: auto;
 }
 

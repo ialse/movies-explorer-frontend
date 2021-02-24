@@ -10,6 +10,7 @@ import Footer from '../Footer/Footer';
 
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function App() {
     return (
@@ -17,14 +18,17 @@ function App() {
             <Switch>
                 <Route exact path="/">
                     <Main />
+                    <Footer />
                 </Route>
                 <Route exact path="/movies">
                     <Header />
                     <Movies />
+                    <Footer />
                 </Route>
                 <Route exact path="/saved-movies">
                     <Header />
                     <SavedMovies />
+                    <Footer />
                 </Route>
                 <Route exact path="/profile">
                     <Header />
@@ -33,12 +37,13 @@ function App() {
                 <Route exact path="/sign-up">
                     <Register />
                 </Route>
-                {/*<Route exact path="/sign-in">
+                <Route exact path="/sign-in">
                     <Login />
-    </Route>*/}
+                </Route>
+                <Route exact path="/*">
+                    <NotFoundPage />
+                </Route>
             </Switch >
-
-            <Footer />
         </div>
     );
 

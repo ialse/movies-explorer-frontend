@@ -1,12 +1,12 @@
 .header {
-    padding: 0 0 70px 0;
     background: #202020;
     color: #fff;       
     width: 100%;
   }
 
 .header__container {
-    max-width: 1140px;
+    max-width: 1280px;
+    padding: 0 5.5% 70px 5.5%;
     height: 74px;
     margin: auto;
     display: flex;

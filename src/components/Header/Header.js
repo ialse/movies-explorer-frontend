@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import logo from '../../images/logo.svg';
 import './Header.css';
 
@@ -7,9 +9,9 @@ function Header() {
     return (
         <header className="header">
             <div className="header__container">
-                <a className="header__link" href="/">
+                <Link to="/" className="header__link" href="/">
                     <img className="header__logo" alt="Логотип" src={logo}></img>
-                </a>
+                </Link>
                 <Navigation />
             </div>
         </header>
