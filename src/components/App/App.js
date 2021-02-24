@@ -1,6 +1,7 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
+import HeaderNoAuth from '../HeaderNoAuth/HeaderNoAuth';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -17,6 +18,7 @@ function App() {
         <div className="page" >
             <Switch>
                 <Route exact path="/">
+                    <HeaderNoAuth />
                     <Main />
                     <Footer />
                 </Route>
