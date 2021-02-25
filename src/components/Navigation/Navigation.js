@@ -12,6 +12,7 @@ function Navigation() {
                 <span className="navigation__link-text">Аккаунт</span>
                 <img className="navigation__pic" alt="Аккаунт" src={accountPic}></img>
             </Link>
+            <button className="navigation__button"></button>
         </nav>
     );
 }

@@ -48,3 +48,43 @@
     background: #313131;
     border-radius: 4px;
 }
+
+.navigation__button {
+  display: none;
+  background: #222;
+  background-image: url("../../images/button-menu.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+  cursor: pointer;
+}
+
+.navigation__button:hover {
+  opacity: 0.7;
+  transition: opacity 0.5s ease-out;
+}
+
+.navigation__button:focus {
+    outline: none;
+  }
+
+@media screen and (max-width: 800px) { 
+    .navigation__button {
+        display: block;
+    }
+
+    .navigation__link {
+        display: none;
+    }
+
+    .navigation__link-account {
+        display: none;
+    }
+}

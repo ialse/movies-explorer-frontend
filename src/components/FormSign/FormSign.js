@@ -24,6 +24,7 @@ const FormSign = memo(({ name, title, onSubmit, onChange, isInvalid, isLoading, 
                 <label className="form__field" for="form-password-">Пароль</label>
                 <input type="password" className="form__input" id={`form-password-${name}`} name="password"
                     placeholder="Пароль" onChange={onChange} />
+                <span className="form__error">Что-то пошло не так...</span>
                 <button type="submit" className={`form__btn ${isInvalid ? 'form__btn_disabled' : ''}`} disabled={isInvalid}>
                     {isLoading
                         ? (<div className='spinner'></div >)

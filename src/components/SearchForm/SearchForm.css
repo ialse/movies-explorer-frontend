@@ -1,69 +1,104 @@
 .search {
-    padding: 70px 0 0 0;
+  padding: 70px 0 0 0;
 }
 
 .search__form {
-    display: flex;
-    align-items: center;
-    border-radius: 9px;
-    background: #2f2f2f;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 9px;
+  background: #2f2f2f;
 }
 
 .search__pic {
-    margin: 0 10px 0 19px;
+  margin: 0 10px 0 19px;
 }
 
 .search__input {
-    height: 72px;
-    background: #2f2f2f;
-    color: #8b8b8b;
-    font-size: 18px;
-    line-height: 1.11;
-    font-weight: 400;
-    border: none;
-    padding: 0;
-    flex-grow: 1;
+  height: 72px;
+  background: #2f2f2f;
+  color: #8b8b8b;
+  font-size: 18px;
+  line-height: 1.11;
+  font-weight: 400;
+  border: none;
+  padding: 0;
+  flex-grow: 1;
+  display: block;
+  width: 30%;
 }
 
 .search__input:focus {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 
 .search__button {
-    width: 34px;
-    height: 34px;
-    background-color: #2f2f2f;
-    background-image: url("../../images/search-button.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0 0 0 46px;
-    padding: 0;
-    border: 0;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-    cursor: pointer;
+  width: 34px;
+  height: 34px;
+  background-color: #2f2f2f;
+  background-image: url("../../images/search-button.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 0 0 46px;
+  padding: 0;
+  border: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+  cursor: pointer;
 }
 
 .search__button:hover {
-    opacity: 0.4;
-    transition: opacity 0.5s ease-out;
+  opacity: 0.4;
+  transition: opacity 0.5s ease-out;
 }
 
 .search__button:focus {
-    outline: none;
+  outline: none;
 }
 
 .search__separator {
-    height: 40px;
-    width: 1px;
-    margin: 0 29px 0 30px;
-    background: #424242;    
+  height: 40px;
+  width: 1px;
+  margin: 0 29px 0 30px;
+  background: #424242;
 }
 
 .search__line {
-    height: 1px;
-    margin: 69px 0 10px 0;
-    background: #424242;    
+  height: 1px;
+  margin: 69px 0 10px 0;
+  background: #424242;
+}
+
+@media screen and (max-width: 800px) {
+  .search__separator {
+    margin: 0 19px;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .search__form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 19px;
+  }
+
+  .search__input {
+    font-size: 14px;
+    line-height: 1.43;
+  }
+
+  .search__pic {
+    display: none;
+  }
+
+  .search__separator {
+    display: none;
+  }
+
+  .search__line {
+    margin: 109px 0 10px 0;
+  }
 }
