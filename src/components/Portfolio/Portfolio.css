@@ -52,3 +52,25 @@
     opacity: 0.4;
     transition: opacity 0.5s ease-out;
 }
+
+@media screen and (max-width: 450px) {
+    .portfolio__container {
+        padding: 0 3% 70px 3%;
+    }
+
+    .portfolio__title {
+        font-size: 14px;
+        line-height: 1.43;
+        margin: 0 0 40px 0;
+    }
+
+    .portfolio__name-site {
+        font-size: 18px;
+        line-height: 1.55;
+    }
+
+    .portfolio__link-site {
+        height: 28px;
+        width: 18px;
+    }
+}
