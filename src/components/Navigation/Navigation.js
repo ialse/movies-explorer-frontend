@@ -4,6 +4,10 @@ import accountPic from '../../images/account.svg';
 import './Navigation.css';
 
 function Navigation() {
+    function handleClick(params) {
+        document.querySelector('.popup').classList.add('popup_opened');
+    }
+
     return (
         <nav className="navigation">
             <Link to="/movies" className="navigation__link">Фильмы</Link>
@@ -12,7 +16,7 @@ function Navigation() {
                 <span className="navigation__link-text">Аккаунт</span>
                 <img className="navigation__pic" alt="Аккаунт" src={accountPic}></img>
             </Link>
-            <button className="navigation__button"></button>
+            <button className="navigation__button" onClick={handleClick}></button>
         </nav>
     );
 }

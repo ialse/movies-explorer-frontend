@@ -72,8 +72,8 @@
 }
 
 .navigation__button:focus {
-    outline: none;
-  }
+  outline: none;
+}
 
 @media screen and (max-width: 800px) { 
     .navigation__button {
@@ -88,3 +88,4 @@
         display: none;
     }
 }
+

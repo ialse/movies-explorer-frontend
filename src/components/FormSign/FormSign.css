@@ -122,4 +122,12 @@
   .form__container {
     width: 260px;
   }
+
+  .form__btn {
+    font-size: 12px;
+  }
+
+  .form__text {
+    font-size: 12px;
+  }
 }

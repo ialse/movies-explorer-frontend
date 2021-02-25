@@ -8,6 +8,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
+import PopupMenu from '../PopupMenu/PopupMenu';
 
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -46,6 +47,7 @@ function App() {
                     <NotFoundPage />
                 </Route>
             </Switch >
+            <PopupMenu />
         </div>
     );
 
