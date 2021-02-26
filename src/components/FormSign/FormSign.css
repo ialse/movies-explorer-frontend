@@ -112,7 +112,7 @@
 @media screen and (max-width: 450px) {
   .form__logo {
     display: block;
-    margin: auto;
+    margin: 56px auto 0 auto;
   }
 
   .form__title {

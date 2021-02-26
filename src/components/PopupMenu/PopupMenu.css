@@ -5,13 +5,13 @@
   background-color: rgba(0, 0, 0, 0.3);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease-in-out, visibility 0.4s;
+  transition: opacity 0.5s ease-in-out, visibility 0.4s;
 }
 
 .popup_opened {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   z-index: 2;
 }
 
@@ -35,9 +35,14 @@
   font-weight: 500;
   color: #fff;
   text-decoration: none;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
+  height: 26px;
   opacity: 1;
   transition: opacity 0.5s ease-out;
+}
+
+.popup__link_current {
+  border-bottom: 2px solid #fff;
 }
 
 .popup__link:hover {
@@ -98,4 +103,10 @@
 .popup__btn-close:hover {
   opacity: 0.7;
   transition: opacity 0.5s ease-out;
+}
+
+@media screen and (max-width: 450px) {
+  .popup__container {
+    width: 100%;
+  }
 }
