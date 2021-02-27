@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom";
-
-import logo from "../../images/logo.svg";
 import logoWeb from "../../images/logo-web.svg";
 import "./Promo.css";
 import NavTab from "../NavTab/NavTab";
