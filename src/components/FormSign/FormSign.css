@@ -102,12 +102,11 @@
   opacity: 1;
   transition: opacity 0.5s ease-out;
 }
-  
+
 .form__link:hover {
   opacity: 0.4;
   transition: opacity 0.5s ease-out;
 }
-
 
 @media screen and (max-width: 450px) {
   .form__logo {
@@ -116,8 +115,8 @@
   }
 
   .form__title {
-     text-align: center;
-     margin: 50px 0 80px 0;
+    text-align: center;
+    margin: 50px 0 80px 0;
   }
   .form__container {
     width: 260px;

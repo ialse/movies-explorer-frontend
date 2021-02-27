@@ -1,52 +1,52 @@
 .navigation {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .navigation__link {
-    text-decoration: none;
-    color: #fff;
-    font-size: 14px;
-    line-height: 1.29;
-    font-weight: 400;
-    margin-left: 20px;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.29;
+  font-weight: 400;
+  margin-left: 20px;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
 }
 
 .navigation__link:hover {
-    opacity: 0.4;
-    transition: opacity 0.5s ease-out;
+  opacity: 0.4;
+  transition: opacity 0.5s ease-out;
 }
 
 .navigation__link-account {
-    display: flex;
-    align-items: center;
-    margin-left: 50px;
-    text-decoration: none;
-    color: #fff;
-    font-size: 14px;
-    line-height: 1.14;
-    font-weight: 400;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.14;
+  font-weight: 400;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
 }
 
 .navigation__link-account:hover {
-    opacity: 0.4;
-    transition: opacity 0.5s ease-out;
+  opacity: 0.4;
+  transition: opacity 0.5s ease-out;
 }
 
 .navigation__link-text {
-    margin-right: 17px;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
+  margin-right: 17px;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
 }
 
 .navigation__pic {
-    padding: 8px 7px;
-    background: #313131;
-    border-radius: 4px;
+  padding: 8px 7px;
+  background: #313131;
+  border-radius: 4px;
 }
 
 .navigation__button {
@@ -75,17 +75,16 @@
   outline: none;
 }
 
-@media screen and (max-width: 800px) { 
-    .navigation__button {
-        display: block;
-    }
+@media screen and (max-width: 800px) {
+  .navigation__button {
+    display: block;
+  }
 
-    .navigation__link {
-        display: none;
-    }
+  .navigation__link {
+    display: none;
+  }
 
-    .navigation__link-account {
-        display: none;
-    }
+  .navigation__link-account {
+    display: none;
+  }
 }
-

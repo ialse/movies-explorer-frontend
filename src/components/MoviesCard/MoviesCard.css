@@ -55,10 +55,24 @@
   transition: all 0.5s ease-out;
 }
 
-/*Сделал временно,чтоб посмотреть*/
 .card__button:focus {
-  background-image: url("../../images/unsave.svg");
   outline: none;
+}
+
+.card__button_save {
+  background-image: url("../../images/unsave.svg");
+}
+
+.card__button_remove {
+  background-image: url("../../images/button-remove.svg");
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.card__button_remove:hover {
+  background-image: url("../../images/button-remove.svg");
+  opacity: 0.4;
+  transition: opacity 0.5s ease-out;
 }
 
 .card__image {
@@ -71,7 +85,7 @@
 
 @media screen and (max-width: 1100px) {
   .card {
-      max-width: 500px;
+    max-width: 500px;
   }
 }
 

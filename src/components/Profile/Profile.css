@@ -45,7 +45,7 @@
   line-height: 1.21;
   font-weight: 400;
   border: none;
-  padding: 0;
+  padding: 5px 0;
   text-align: end;
   width: 100%;
 }
@@ -53,12 +53,13 @@
 .profile__input:focus {
   border: none;
   outline: none;
+  background-color: #2f2f2f;
 }
 
 .profile__line {
   background: #424242;
   height: 1px;
-  margin: 16px 0 17px 0;
+  margin: 11px 0 12px 0;
 }
 
 .profile__btn-edit {
@@ -77,12 +78,12 @@
   transition: opacity 0.5s ease-out;
 }
 
-.profile__edit:hover {
+.profile__btn-edit:hover {
   opacity: 0.4;
   transition: opacity 0.5s ease-out;
 }
 
-.profile__edit:focus {
+.profile__btn-edit:focus {
   outline: none;
 }
 
@@ -126,6 +127,6 @@
   }
 
   .profile__out {
-    font-size: 12px;  
+    font-size: 12px;
   }
 }
