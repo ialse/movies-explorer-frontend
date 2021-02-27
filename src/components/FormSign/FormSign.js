@@ -33,8 +33,9 @@ const FormSign = memo(
                 id={`form-name-${name}`}
                 name="name"
                 placeholder="Имя"
-                minLength="1"
+                minLength="2"
                 maxLength="30"
+                required
                 onChange={onChange}
               />
             </>
@@ -48,8 +49,9 @@ const FormSign = memo(
             id={`form-email-${name}`}
             name="email"
             placeholder="Email"
-            minLength="1"
+            minLength="2"
             maxLength="30"
+            required
             onChange={onChange}
           />
           <label className="form__field" for="form-password-">
@@ -61,6 +63,8 @@ const FormSign = memo(
             id={`form-password-${name}`}
             name="password"
             placeholder="Пароль"
+            minLength="8"
+            required
             onChange={onChange}
           />
           <span className="form__error">Что-то пошло не так...</span>

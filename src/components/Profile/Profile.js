@@ -31,6 +31,7 @@ function Profile() {
               value={name || ""}
               minLength="2"
               maxLength="40"
+              required
               placeholder="Имя"
             />
           </label>
@@ -45,6 +46,7 @@ function Profile() {
               value={email || ""}
               minLength="2"
               maxLength="40"
+              required
               placeholder="Почта"
             />
           </label>
