@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 
@@ -14,7 +15,22 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
+import { moviesApi } from "../../utils/MoviesApi";
+
 function App() {
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    moviesApi
+      .getInitialCards()
+      .then((data) => {
+        setCards(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="page">
       <Switch>
@@ -25,7 +41,7 @@ function App() {
         </Route>
         <Route exact path="/movies">
           <Header />
-          <Movies />
+          <Movies cards={cards} />
           <Footer />
         </Route>
         <Route exact path="/saved-movies">

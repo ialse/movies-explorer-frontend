@@ -7,18 +7,20 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies() {
-  const newMoviesList = moviesList.map((movie) => {
+function Movies({ cards }) {
+  const newMoviesList = cards.map((movie) => {
     let isUserSaved = false;
 
-    userMoviesList.forEach((userMovie) => {
+    /*userMoviesList.forEach((userMovie) => {
       userMovie.movieId === movie.id && (isUserSaved = true);
-    });
+    });*/
 
     return {
+      id: movie.id,
       nameRU: movie.nameRU,
       duration: movie.duration,
-      isUserSaved,
+      image: movie.image ? movie.image.url : null,
+      /*isUserSaved,*/
     };
   });
 
