@@ -21,15 +21,26 @@ function App() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
+    if (localStorage.getItem("prevMovies")) {
+      const localCards = JSON.parse(localStorage.getItem("prevMovies"));
+      setCards(localCards);
+    }
+  }, []);
+
+  function runSearch(inputSearch) {
     moviesApi
       .getInitialCards()
-      .then((data) => {
-        setCards(data);
+      .then((allCards) => {
+        const filterCards = allCards.filter((card) => {
+          if (card.nameRU.toLowerCase().includes(inputSearch)) return card;
+        });
+        setCards(filterCards);
+        localStorage.setItem("prevMovies", JSON.stringify(filterCards));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
 
   return (
     <div className="page">
@@ -41,7 +52,7 @@ function App() {
         </Route>
         <Route exact path="/movies">
           <Header />
-          <Movies cards={cards} />
+          <Movies cards={cards} runSearch={runSearch} />
           <Footer />
         </Route>
         <Route exact path="/saved-movies">

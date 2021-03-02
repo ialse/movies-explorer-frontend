@@ -7,7 +7,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies({ cards }) {
+function Movies({ cards, runSearch }) {
   const newMoviesList = cards.map((movie) => {
     let isUserSaved = false;
 
@@ -27,7 +27,7 @@ function Movies({ cards }) {
   return (
     <div className="movies">
       <div className="movies__container">
-        <SearchForm />
+        <SearchForm runSearch={runSearch} />
         {/*<Preloader />*/}
         <MoviesCardList cards={newMoviesList} />
       </div>
