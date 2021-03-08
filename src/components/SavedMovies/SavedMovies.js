@@ -1,25 +1,16 @@
-/*Временная константа с фильмами*/
-import userMoviesList from "../../constants/userMovies";
-
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import { useCallback, useEffect, useState } from "react";
+import { mainApi } from "../../utils/MainApi";
 
-function SavedMovies() {
-  const newUserMoviesList = userMoviesList.map((movie) => {
-    return {
-      nameRU: movie.nameRU,
-      duration: movie.duration,
-      movieId: movie.movieId,
-    };
-  });
-
+function SavedMovies({ userCards, deleteUserMovie }) {
   return (
     <div className="movies">
       <div className="movies__container">
         <SearchForm />
         {/* <Preloader / > */}
-        <MoviesCardList cards={newUserMoviesList} />
+        <MoviesCardList cards={userCards} deleteUserMovie={deleteUserMovie} />
       </div>
     </div>
   );

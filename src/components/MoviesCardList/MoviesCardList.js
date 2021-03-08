@@ -2,12 +2,7 @@ import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { useEffect, useState } from "react";
 
-function MoviesCardList({ cards }) {
-  /*Обрезаю 100 фильмов до 19
-  const newCards = cards.filter((card, index) => {
-    if (index < 19) return card;
-  });*/
-
+function MoviesCardList({ cards, userCards, saveMovie, deleteUserMovie }) {
   const [countMovies, setCountMovies] = useState(12);
 
   function handleClick() {
@@ -19,7 +14,15 @@ function MoviesCardList({ cards }) {
       <section className="cards">
         {cards.map(
           (card, index) =>
-            index < countMovies && <MoviesCard card={card} key={card.id} />
+            index < countMovies && (
+              <MoviesCard
+                key={card.id ? card.id : card.movieId}
+                card={card}
+                userCards={userCards}
+                saveMovie={saveMovie}
+                deleteUserMovie={deleteUserMovie}
+              />
+            )
         )}
       </section>
       {countMovies < cards.length && (

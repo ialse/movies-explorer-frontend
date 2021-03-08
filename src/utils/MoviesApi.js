@@ -14,7 +14,7 @@ class MoviesApi {
   }
 
   // Получение начальных карточек
-  getInitialCards() {
+  getAllCards() {
     return fetch(`${this._baseUrl}`, {
       headers: this._headers,
     }).then((res) => {

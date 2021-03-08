@@ -7,7 +7,9 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies({ cards, runSearch }) {
+const IMAGE_URL = "https://api.nomoreparties.co";
+
+function Movies({ cards, userCards, runSearch, saveMovie, deleteUserMovie }) {
   const newMoviesList = cards.map((movie) => {
     let isUserSaved = false;
 
@@ -16,10 +18,19 @@ function Movies({ cards, runSearch }) {
     });*/
 
     return {
-      id: movie.id,
+      movieId: String(movie.id),
       nameRU: movie.nameRU,
+      nameEN: movie.nameEN,
+      country: movie.country,
+      director: movie.director,
+      year: movie.year,
+      description: movie.description,
       duration: movie.duration,
-      image: movie.image ? movie.image.url : null,
+      image: movie.image ? IMAGE_URL + movie.image.url : null,
+      trailer: movie.trailerLink,
+      thumbnail: movie.image
+        ? IMAGE_URL + movie.image.formats.thumbnail.url
+        : null,
       /*isUserSaved,*/
     };
   });
@@ -29,7 +40,12 @@ function Movies({ cards, runSearch }) {
       <div className="movies__container">
         <SearchForm runSearch={runSearch} />
         {/*<Preloader />*/}
-        <MoviesCardList cards={newMoviesList} />
+        <MoviesCardList
+          cards={newMoviesList}
+          userCards={userCards}
+          saveMovie={saveMovie}
+          deleteUserMovie={deleteUserMovie}
+        />
       </div>
     </div>
   );

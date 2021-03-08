@@ -2,7 +2,19 @@ import "./MoviesCard.css";
 import film from "../../images/film2.jpg";
 const IMAGE_URL = "https://api.nomoreparties.co";
 
-function MoviesCard({ card }) {
+function MoviesCard({ card, userCards, saveMovie, deleteUserMovie }) {
+  let isUserMovie = false;
+  let userMovieId;
+
+  if (userCards) {
+    isUserMovie = userCards.some((userCard) => {
+      if (userCard.movieId === card.movieId) {
+        userMovieId = userCard._id;
+        return true;
+      }
+    });
+  }
+
   return (
     <div className="card">
       <div className="card__header">
@@ -11,18 +23,23 @@ function MoviesCard({ card }) {
         <button
           className={`card__button
                     ${
-                      card.isUserSaved
-                        ? "card__button_save"
-                        : card.movieId
+                      card._id
                         ? "card__button_remove"
+                        : isUserMovie
+                        ? "card__button_save"
                         : ""
                     }`}
+          onClick={() =>
+            isUserMovie || card._id
+              ? deleteUserMovie(card._id ? card._id : userMovieId)
+              : saveMovie(card)
+          }
         />
       </div>
       <img
         className="card__image"
         alt="Фильм"
-        src={card.image ? IMAGE_URL + card.image : film}
+        src={card.image ? card.image : film}
       />
     </div>
   );
