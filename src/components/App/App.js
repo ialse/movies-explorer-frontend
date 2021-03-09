@@ -27,6 +27,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [userCards, setUserCards] = useState([]);
+  const [filterUserCards, setFilterUserCards] = useState([]);
+
+  const [inputFilterSearch, setInputFilterSearch] = useState('');
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +57,15 @@ function App() {
         console.log(err);
       })
       .finally(() => setIsLoading(false));
+  }
+
+  /*Фильтр среди сохраненных фильмов*/
+  function runSearchSavedMovies(inputSearch) {
+    const filterCards = userCards.filter((card) => {
+      if (card.nameRU.toLowerCase().includes(inputSearch)) return card;
+    });
+    setInputFilterSearch(inputSearch);
+    setFilterUserCards(filterCards);
   }
 
   // ****** Обработчики для нашего API ******
@@ -109,6 +121,11 @@ function App() {
           (card) => card._id !== movieDelId && card
         );
         setUserCards(newUserMovies);
+
+        const newFilterUserMovies = filterUserCards.filter(
+          (card) => card._id !== movieDelId && card
+        );
+        setFilterUserCards(newFilterUserMovies);
       })
       .catch((err) => {
         console.log(err);
@@ -163,6 +180,8 @@ function App() {
     auth.logout();
     setLoggedIn(false);
     setCards([]);
+    setUserCards([]);
+    setFilterUserCards([]);
     localStorage.removeItem('prevMovies');
     history.push('/sign-in');
   }
@@ -211,8 +230,12 @@ function App() {
               <>
                 <Header />
                 <SavedMovies
-                  userCards={userCards}
+                  userCards={
+                    filterUserCards.length ? filterUserCards : userCards
+                  }
                   deleteUserMovie={handleDeleteUserMovie}
+                  runSearchSavedMovies={runSearchSavedMovies}
+                  inputFilterSearch={inputFilterSearch}
                 />
                 <Footer />
               </>

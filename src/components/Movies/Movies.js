@@ -15,12 +15,6 @@ function Movies({
   isLoading,
 }) {
   const newMoviesList = cards.map((movie) => {
-    let isUserSaved = false;
-
-    /*userMoviesList.forEach((userMovie) => {
-      userMovie.movieId === movie.id && (isUserSaved = true);
-    });*/
-
     return {
       movieId: String(movie.id),
       nameRU: movie.nameRU ? movie.nameRU : 'Не указано название',
@@ -37,15 +31,13 @@ function Movies({
       thumbnail: movie.image
         ? IMAGE_URL + movie.image.formats.thumbnail.url
         : null,
-      /*isUserSaved,*/
     };
   });
 
   return (
     <div className="movies">
       <div className="movies__container">
-        <SearchForm runSearch={runSearch} />
-        {/*<Preloader />*/}
+        <SearchForm runSearch={runSearch} page={'movie'} />
         <MoviesCardList
           cards={newMoviesList}
           userCards={userCards}

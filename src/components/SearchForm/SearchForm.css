@@ -65,12 +65,47 @@
   background: #424242;
 }
 
+.search__helpers {
+  display: flex;
+  position: relative;
+}
+
 .search__error {
   height: 20px;
   font-size: 12px;
   line-height: 1.21;
   margin: 5px;
   color: #ee3465;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.search__filter {
+  height: 20px;
+  font-size: 12px;
+  line-height: 1.21;
+  margin: 5px;
+  color: #fff;
+  width: auto;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.search__filter-delete {
+  background: #222;
+  background-image: url('../../images/button-close.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 10px;
+  height: 10px;
+  border: none;
+  padding: 0;
+  margin: 0 10px;
+  opacity: 1;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
 }
 
 .search__line {
