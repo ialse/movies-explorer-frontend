@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useForm } from "../../customHook/useForm";
+import { useState, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useForm } from '../../customHook/useForm';
 
-import "./Profile.css";
+import './Profile.css';
 
 function Profile({ signOut, updateUser }) {
   const currentUser = useContext(CurrentUserContext);
@@ -37,7 +37,7 @@ function Profile({ signOut, updateUser }) {
               name="name"
               type="text"
               onChange={form.handleChange}
-              value={form.values.name || ""}
+              value={form.values.name || ''}
               minLength="2"
               maxLength="40"
               required
@@ -45,7 +45,7 @@ function Profile({ signOut, updateUser }) {
             />
           </label>
           <div className="profile__error">{`${
-            form.errors.name ? form.errors.name : ""
+            form.errors.name ? form.errors.name : ''
           }`}</div>
           <div className="profile__line"></div>
           <label className="profile__field">
@@ -55,7 +55,7 @@ function Profile({ signOut, updateUser }) {
               name="email"
               type="email"
               onChange={form.handleChange}
-              value={form.values.email || ""}
+              value={form.values.email || ''}
               minLength="2"
               maxLength="40"
               required
@@ -63,12 +63,12 @@ function Profile({ signOut, updateUser }) {
             />
           </label>
           <div className="profile__error">{`${
-            form.errors.email ? form.errors.email : ""
+            form.errors.email ? form.errors.email : ''
           }`}</div>
           <button
             type="submit"
             className={`profile__btn-edit ${
-              !form.isValid && "profile__btn-edit_disabled"
+              !form.isValid && 'profile__btn-edit_disabled'
             }`}
             disabled={!form.isValid}
           >

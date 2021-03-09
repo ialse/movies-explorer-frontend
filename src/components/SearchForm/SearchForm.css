@@ -37,7 +37,7 @@
   width: 34px;
   height: 34px;
   background-color: #2f2f2f;
-  background-image: url("../../images/search-button.svg");
+  background-image: url('../../images/search-button.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -65,9 +65,17 @@
   background: #424242;
 }
 
+.search__error {
+  height: 20px;
+  font-size: 12px;
+  line-height: 1.21;
+  margin: 5px;
+  color: #ee3465;
+}
+
 .search__line {
   height: 1px;
-  margin: 69px 0 10px 0;
+  margin: 39px 0 10px 0;
   background: #424242;
 }
 

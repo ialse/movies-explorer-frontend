@@ -1,5 +1,5 @@
-import React, { memo, useState } from "react";
-import FormSign from "../FormSign/FormSign";
+import React, { memo, useState } from 'react';
+import FormSign from '../FormSign/FormSign';
 
 const Register = memo(({ authRegister }) => {
   function handleSubmit(e, { name, email, password }) {

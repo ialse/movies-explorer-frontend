@@ -3,7 +3,7 @@ class MainApi {
     this._baseUrl = baseUrl;
     this._headers = headers;
     this._credentials = credentials;
-    this._errorServer = document.querySelector(".error-server");
+    this._errorServer = document.querySelector('.error-server');
   }
 
   // Получение ответа от сервера, иначе ошибка
@@ -29,7 +29,7 @@ class MainApi {
     return fetch(`${this._baseUrl}/movies`, {
       headers: this._headers,
       credentials: this._credentials,
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(movie),
     }).then((res) => {
       return this._getResponseData(res);
@@ -41,7 +41,7 @@ class MainApi {
     return fetch(`${this._baseUrl}/movies/${movieDelId}`, {
       headers: this._headers,
       credentials: this._credentials,
-      method: "DELETE",
+      method: 'DELETE',
     });
   }
 
@@ -60,7 +60,7 @@ class MainApi {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       credentials: this._credentials,
-      method: "PATCH",
+      method: 'PATCH',
       body: JSON.stringify(newUserInfo),
     }).then((res) => {
       return this._getResponseData(res);
@@ -69,9 +69,9 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-  baseUrl: "http://localhost:3000", //"api.ialse-movies.students.nomoredomains.rocks",
+  baseUrl: 'http://localhost:3000', //"api.ialse-movies.students.nomoredomains.rocks",
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
-  credentials: "include",
+  credentials: 'include',
 });

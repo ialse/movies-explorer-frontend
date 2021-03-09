@@ -1,13 +1,13 @@
-export const BASE_URL = "http://localhost:3000"; //"https://api.ialse-movies.students.nomoredomains.rocks";
+export const BASE_URL = 'http://localhost:3000'; //"https://api.ialse-movies.students.nomoredomains.rocks";
 
 export const register = (nameUser, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ name: nameUser, email, password }),
-    credentials: "include",
+    credentials: 'include',
   }).then((res) => {
     if (res.ok) {
       return res.json();
@@ -18,12 +18,12 @@ export const register = (nameUser, email, password) => {
 
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-    credentials: "include",
+    credentials: 'include',
   }).then((res) => {
     if (res.ok) {
       return res.json();
@@ -34,11 +34,11 @@ export const authorize = (email, password) => {
 
 export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
-    credentials: "include",
+    credentials: 'include',
   }).then((res) => {
     if (res.ok) {
       return res.json();
@@ -49,11 +49,11 @@ export const getContent = () => {
 
 export const logout = () => {
   return fetch(`${BASE_URL}/signout`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
-    credentials: "include",
+    credentials: 'include',
   }).then((res) => {
     if (res.ok) {
       return res.json();

@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-import "./App.css";
+import { useEffect, useState } from 'react';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import './App.css';
 
-import HeaderNoAuth from "../HeaderNoAuth/HeaderNoAuth";
-import Header from "../Header/Header";
-import Main from "../Main/Main";
-import Movies from "../Movies/Movies";
-import SavedMovies from "../SavedMovies/SavedMovies";
-import Profile from "../Profile/Profile";
-import Footer from "../Footer/Footer";
-import PopupMenu from "../PopupMenu/PopupMenu";
+import HeaderNoAuth from '../HeaderNoAuth/HeaderNoAuth';
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
+import Footer from '../Footer/Footer';
+import PopupMenu from '../PopupMenu/PopupMenu';
 
-import Register from "../Register/Register";
-import Login from "../Login/Login";
-import NotFoundPage from "../NotFoundPage/NotFoundPage";
-import * as auth from "../../utils/auth";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import * as auth from '../../utils/auth';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import { moviesApi } from "../../utils/MoviesApi";
-import { mainApi } from "../../utils/MainApi";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { moviesApi } from '../../utils/MoviesApi';
+import { mainApi } from '../../utils/MainApi';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
   const history = useHistory();
@@ -29,16 +29,18 @@ function App() {
   const [userCards, setUserCards] = useState([]);
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("prevMovies")) {
-      const localCards = JSON.parse(localStorage.getItem("prevMovies"));
+    if (localStorage.getItem('prevMovies')) {
+      const localCards = JSON.parse(localStorage.getItem('prevMovies'));
       setCards(localCards);
     }
   }, []);
 
   /*Поиск фильмов в beatfilm*/
   function runSearch(inputSearch) {
+    setIsLoading(true);
     moviesApi
       .getAllCards()
       .then((allCards) => {
@@ -46,11 +48,12 @@ function App() {
           if (card.nameRU.toLowerCase().includes(inputSearch)) return card;
         });
         setCards(filterCards);
-        localStorage.setItem("prevMovies", JSON.stringify(filterCards));
+        localStorage.setItem('prevMovies', JSON.stringify(filterCards));
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   // ****** Обработчики для нашего API ******
@@ -118,7 +121,7 @@ function App() {
       .then((res) => {
         if (res.email) {
           /*onInfoTooltip('Вы успешно зарегистрировались!', 'ok')*/
-          history.push("/sign-in");
+          history.push('/sign-in');
           /*changeCurrUrl('/sign-in');*/
           return;
         }
@@ -135,7 +138,7 @@ function App() {
     return auth.authorize(email, password).then((data) => {
       if (data) {
         handleLogin();
-        history.push("/movies");
+        history.push('/movies');
       }
     });
   }
@@ -151,16 +154,17 @@ function App() {
         setLoggedIn(true);
         /*setUserEmail(res.email);*/
         setCurrentUser(res);
-        history.push("/movies");
+        history.push('/movies');
       })
       .catch((err) => console.log(err));
   }
 
   function signOut() {
-    console.log("signOut");
     auth.logout();
     setLoggedIn(false);
-    history.push("/sign-in");
+    setCards([]);
+    localStorage.removeItem('prevMovies');
+    history.push('/sign-in');
   }
 
   useEffect(() => {
@@ -193,6 +197,7 @@ function App() {
                   runSearch={runSearch}
                   saveMovie={handleSaveMovie}
                   deleteUserMovie={handleDeleteUserMovie}
+                  isLoading={isLoading}
                 />
                 <Footer />
               </>

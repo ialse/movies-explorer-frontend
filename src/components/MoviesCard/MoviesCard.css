@@ -35,7 +35,7 @@
   top: 19px;
   right: 14px;
   background: #222;
-  background-image: url("../../images/save.svg");
+  background-image: url('../../images/save.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -50,7 +50,7 @@
 }
 
 .card__button:hover {
-  background-image: url("../../images/unsave.svg");
+  background-image: url('../../images/unsave.svg');
   opacity: 0.4;
   transition: all 0.5s ease-out;
 }
@@ -60,24 +60,34 @@
 }
 
 .card__button_save {
-  background-image: url("../../images/unsave.svg");
+  background-image: url('../../images/unsave.svg');
 }
 
 .card__button_remove {
-  background-image: url("../../images/button-remove.svg");
+  background-image: url('../../images/button-remove.svg');
   opacity: 1;
   transition: opacity 0.5s ease-out;
 }
 
 .card__button_remove:hover {
-  background-image: url("../../images/button-remove.svg");
+  background-image: url('../../images/button-remove.svg');
   opacity: 0.4;
   transition: opacity 0.5s ease-out;
 }
 
+.card__link {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 203px;
+}
+
 .card__image {
   max-width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: flex;
   margin: auto;
   align-items: center;

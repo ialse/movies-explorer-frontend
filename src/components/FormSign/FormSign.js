@@ -1,9 +1,9 @@
-import logo from "../../images/logo.svg";
+import logo from '../../images/logo.svg';
 
-import React, { memo } from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "../../customHook/useForm";
-import "./FormSign.css";
+import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from '../../customHook/useForm';
+import './FormSign.css';
 
 const FormSign = memo(
   ({ name, title, onSubmit, isLoading, btnName, changeCurrUrl }) => {
@@ -27,7 +27,7 @@ const FormSign = memo(
             <img className="form__logo" alt="Логотип" src={logo}></img>
           </Link>
           <h2 className="form__title">{title}</h2>
-          {name === "sign-up" && (
+          {name === 'sign-up' && (
             <>
               <label className="form__field" htmlFor="form-name-">
                 Имя
@@ -44,7 +44,7 @@ const FormSign = memo(
                 onChange={form.handleChange}
               />
               <span className="form__error">{`${
-                form.errors.name ? form.errors.name : ""
+                form.errors.name ? form.errors.name : ''
               }`}</span>
             </>
           )}
@@ -63,7 +63,7 @@ const FormSign = memo(
             onChange={form.handleChange}
           />
           <span className="form__error">{`${
-            form.errors.email ? form.errors.email : ""
+            form.errors.email ? form.errors.email : ''
           }`}</span>
           <label className="form__field" htmlFor="form-password-">
             Пароль
@@ -79,26 +79,26 @@ const FormSign = memo(
             onChange={form.handleChange}
           />
           <span className="form__error">{`${
-            form.errors.password ? form.errors.password : ""
+            form.errors.password ? form.errors.password : ''
           }`}</span>
           <button
             type="submit"
-            className={`form__btn ${!form.isValid && "form__btn_disabled"}`}
+            className={`form__btn ${!form.isValid && 'form__btn_disabled'}`}
             disabled={!form.isValid}
           >
             {btnName}
           </button>
-          {name === "sign-up" && (
+          {name === 'sign-up' && (
             <p className="form__text">
-              Уже зарегистрированы?{" "}
+              Уже зарегистрированы?{' '}
               <Link to="/sign-in" className="form__link">
                 Войти
               </Link>
             </p>
           )}
-          {name === "sign-in" && (
+          {name === 'sign-in' && (
             <p className="form__text">
-              Еще не зарегистрированы?{" "}
+              Еще не зарегистрированы?{' '}
               <Link to="/sign-up" className="form__link">
                 Регистрация
               </Link>

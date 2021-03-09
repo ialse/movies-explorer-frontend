@@ -1,15 +1,19 @@
-import "./Movies.css";
-/*Временные константы с фильмами*/
-import moviesList from "../../constants/movies";
-import userMoviesList from "../../constants/userMovies";
+import './Movies.css';
 
-import SearchForm from "../SearchForm/SearchForm";
-import Preloader from "../Preloader/Preloader";
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import SearchForm from '../SearchForm/SearchForm';
+import Preloader from '../Preloader/Preloader';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-const IMAGE_URL = "https://api.nomoreparties.co";
+const IMAGE_URL = 'https://api.nomoreparties.co';
 
-function Movies({ cards, userCards, runSearch, saveMovie, deleteUserMovie }) {
+function Movies({
+  cards,
+  userCards,
+  runSearch,
+  saveMovie,
+  deleteUserMovie,
+  isLoading,
+}) {
   const newMoviesList = cards.map((movie) => {
     let isUserSaved = false;
 
@@ -19,15 +23,17 @@ function Movies({ cards, userCards, runSearch, saveMovie, deleteUserMovie }) {
 
     return {
       movieId: String(movie.id),
-      nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
-      country: movie.country,
-      director: movie.director,
-      year: movie.year,
-      description: movie.description,
-      duration: movie.duration,
+      nameRU: movie.nameRU ? movie.nameRU : 'Не указано название',
+      nameEN: movie.nameEN ? movie.nameEN : 'Не указано название',
+      country: movie.country ? movie.country : 'Не указана страна',
+      director: movie.director ? movie.director : 'Не указан режиссер',
+      year: movie.year ? movie.year : 'Не указан год',
+      description: movie.description
+        ? movie.description
+        : 'Не указано описание',
+      duration: movie.duration ? movie.duration : 'Не указано время',
       image: movie.image ? IMAGE_URL + movie.image.url : null,
-      trailer: movie.trailerLink,
+      trailer: movie.trailerLink ? movie.trailerLink : 'http://youtube.com',
       thumbnail: movie.image
         ? IMAGE_URL + movie.image.formats.thumbnail.url
         : null,
@@ -45,6 +51,7 @@ function Movies({ cards, userCards, runSearch, saveMovie, deleteUserMovie }) {
           userCards={userCards}
           saveMovie={saveMovie}
           deleteUserMovie={deleteUserMovie}
+          isLoading={isLoading}
         />
       </div>
     </div>
