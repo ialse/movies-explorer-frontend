@@ -7,7 +7,14 @@
   text-rendering: optimizeLegibility;
   display: flex;
   flex-direction: column;
-  font-family: "Inter", sans-serif, Arial;
+  font-family: 'Inter', sans-serif, Arial;
   align-items: center;
   min-height: 100vh;
+}
+
+.page_preloader {
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  flex-direction: row;
 }

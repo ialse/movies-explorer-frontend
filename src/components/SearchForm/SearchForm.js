@@ -8,20 +8,28 @@ function SearchForm({
   runSearchSavedMovies,
   page,
   inputFilterSearch,
+  searchTrigger,
+  onFilter,
+  isShortMovie,
 }) {
   const [inputSearch, setInputSearch] = useState('');
   const [isValid, setIsValid] = useState(true);
 
   function handleSubmit(e) {
     e.preventDefault();
+    const strSearch = inputSearch.toLowerCase();
 
-    if (page === 'saved-movie' && inputSearch) {
-      runSearchSavedMovies(inputSearch);
-      return;
-    } else if (page === 'movie' && inputSearch) {
+    if (inputSearch) {
+      searchTrigger(true);
       setIsValid(true);
-      runSearch(inputSearch.toLowerCase());
-      return;
+      if (page === 'movies') {
+        runSearch(strSearch);
+        return;
+      }
+      if (page === 'saved-movies') {
+        runSearchSavedMovies(strSearch);
+        return;
+      }
     }
     setIsValid(false);
   }
@@ -35,6 +43,7 @@ function SearchForm({
 
   function handleClickFilterDelete() {
     runSearchSavedMovies('');
+    searchTrigger(false);
   }
 
   return (
@@ -52,7 +61,11 @@ function SearchForm({
         />
         <button className="search__button" type="submit"></button>
         <div className="search__separator"></div>
-        <FilterCheckbox />
+        <FilterCheckbox
+          page={page}
+          onFilter={onFilter}
+          isShortMovie={isShortMovie}
+        />
       </form>
       <div className="search__helpers">
         <div className="search__error">

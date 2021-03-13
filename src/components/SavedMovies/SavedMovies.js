@@ -1,25 +1,43 @@
 import SearchForm from '../SearchForm/SearchForm';
-import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { useCallback, useEffect, useState } from 'react';
-import { mainApi } from '../../utils/MainApi';
+import { useEffect } from 'react';
 
 function SavedMovies({
   userCards,
   deleteUserMovie,
   runSearchSavedMovies,
   inputFilterSearch,
+  searchTrigger,
+  onSearch,
+  countMoviesToPage,
+  handleCountMovies,
+  isShortMovie,
+  onFilter,
+  page = {},
 }) {
+  /*useEffect(() => {
+    searchTrigger(false);
+  }, []);*/
   return (
     <div className="movies">
       <div className="movies__container">
         <SearchForm
           userCards={userCards}
           runSearchSavedMovies={runSearchSavedMovies}
-          page={'saved-movie'}
+          page={'saved-movies'}
           inputFilterSearch={inputFilterSearch}
+          searchTrigger={searchTrigger}
+          isShortMovie={isShortMovie}
+          onFilter={onFilter}
         />
-        <MoviesCardList cards={userCards} deleteUserMovie={deleteUserMovie} />
+        <MoviesCardList
+          cards={userCards}
+          deleteUserMovie={deleteUserMovie}
+          onSearch={onSearch}
+          countMoviesToPage={countMoviesToPage}
+          handleCountMovies={handleCountMovies}
+          page={'saved-movies'}
+        />
       </div>
     </div>
   );
