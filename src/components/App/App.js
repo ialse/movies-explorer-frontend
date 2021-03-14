@@ -186,7 +186,6 @@ function App() {
 
   // Сохранение юзером фильмов
   function handleSaveMovie(newMovie) {
-    /*setIsLoading(true);*/
     mainApi
       .saveMovieToServer(newMovie)
       .then((userMovie) => {
@@ -196,9 +195,7 @@ function App() {
       .catch((err) => {
         /*mainApi.setErrorServer(err);*/
       })
-      .finally(() => {
-        /*setIsLoading(false);*/
-      });
+      .finally(() => {});
   }
 
   // Удаление сохраненных юзером фильмов
@@ -235,6 +232,7 @@ function App() {
 
   /*Обработчик логина*/
   function handleAuthLogin(email, password) {
+    setIsLoading(true);
     return auth
       .authorize(email, password)
       .then(() => {
@@ -242,6 +240,9 @@ function App() {
       })
       .catch((err) => {
         showError(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -404,7 +405,7 @@ function App() {
         </Switch>
         <PopupMenu popup={popup} togglePopup={handleTogglePopup} />
       </div>
-      {isLoading && <BlockAction />}
+      {isLoading && <BlockAction isLoading={isLoading} />}
     </CurrentUserContext.Provider>
   );
 }
