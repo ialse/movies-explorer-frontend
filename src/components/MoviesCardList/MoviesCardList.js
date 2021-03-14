@@ -35,9 +35,11 @@ function MoviesCardList({
           </div>
         ) : (
           <div className={`cards__container`}>
-            {cards.map(
-              (card, index) =>
-                index < countMoviesToPage.current && (
+            {cards.map((card, index, arr) => {
+              const limit =
+                page === 'movies' ? countMoviesToPage.current : arr.length;
+              return (
+                index < limit && (
                   <MoviesCard
                     key={card.id ? card.id : card.movieId}
                     card={card}
@@ -46,16 +48,20 @@ function MoviesCardList({
                     deleteUserMovie={deleteUserMovie}
                   />
                 )
-            )}
+              );
+            })}
           </div>
         )}
       </section>
 
-      {!isLoading && !textError && countMoviesToPage.current < cards.length && (
-        <button className="more" onClick={handleClick}>
-          Ещё
-        </button>
-      )}
+      {page !== 'saved-movies' &&
+        !isLoading &&
+        !textError &&
+        countMoviesToPage.current < cards.length && (
+          <button className="more" onClick={handleClick}>
+            Ещё
+          </button>
+        )}
     </>
   );
 }
