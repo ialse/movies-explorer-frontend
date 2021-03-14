@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import FormSign from '../FormSign/FormSign';
 
 const Login = memo(({ authLogin, textError, clearTextError }) => {

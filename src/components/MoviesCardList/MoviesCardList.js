@@ -13,7 +13,6 @@ function MoviesCardList({
   handleCountMovies,
   page,
   textError,
-  clearTextError,
 }) {
   function handleClick() {
     handleCountMovies(countMoviesToPage.current + countMoviesToPage.add);

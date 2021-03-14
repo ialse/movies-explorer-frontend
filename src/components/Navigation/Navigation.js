@@ -1,14 +1,9 @@
-import { Link } from "react-router-dom";
-import accountPic from "../../images/account.svg";
+import { Link } from 'react-router-dom';
+import accountPic from '../../images/account.svg';
 
-import "./Navigation.css";
+import './Navigation.css';
 
-function Navigation() {
-  /*Временно, чтобы работало открытие меню*/
-  function handleClick() {
-    document.querySelector(".popup").classList.add("popup_opened");
-  }
-
+function Navigation({ togglePopup }) {
   return (
     <nav className="navigation">
       <Link to="/movies" className="navigation__link">
@@ -21,7 +16,7 @@ function Navigation() {
         <span className="navigation__link-text">Аккаунт</span>
         <img className="navigation__pic" alt="Аккаунт" src={accountPic}></img>
       </Link>
-      <button className="navigation__button" onClick={handleClick}></button>
+      <button className="navigation__button" onClick={togglePopup}></button>
     </nav>
   );
 }

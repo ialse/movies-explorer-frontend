@@ -1,6 +1,5 @@
 import './MoviesCard.css';
 import noImage from '../../images/no_image.jpg';
-const IMAGE_URL = 'https://api.nomoreparties.co';
 
 function MoviesCard({ card, userCards, saveMovie, deleteUserMovie }) {
   let isUserMovie = false;

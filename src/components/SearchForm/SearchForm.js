@@ -1,7 +1,7 @@
 import searchPic from '../../images/search-pic.svg';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function SearchForm({
   runSearch,

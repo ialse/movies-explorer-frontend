@@ -49,6 +49,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [textError, setTextError] = useState('');
 
+  // попап
+  const [popup, setPopup] = useState(false);
+
   // стейт для режима короткометражек
   const [isShortMovie, setIsShortMovie] = useState(false);
   //стейт для установки кол-ва фильмов в зависимости от разрешения экрана
@@ -278,6 +281,10 @@ function App() {
     history.push('/');
   }
 
+  function handleTogglePopup() {
+    popup ? setPopup(false) : setPopup(true);
+  }
+
   return isTokenChecked ? (
     <div className="page page_preloader">
       <Preloader />
@@ -297,7 +304,7 @@ function App() {
             loggedIn={loggedIn}
             component={() => (
               <>
-                <Header />
+                <Header togglePopup={handleTogglePopup} />
                 <Movies
                   cards={isShortMovie ? shortCards : cards}
                   userCards={userCards}
@@ -324,7 +331,7 @@ function App() {
             loggedIn={loggedIn}
             component={() => (
               <>
-                <Header />
+                <Header popup={popup} togglePopup={handleTogglePopup} />
                 <SavedMovies
                   userCards={
                     inputFilterSearch && isShortMovie
@@ -359,7 +366,7 @@ function App() {
             loggedIn={loggedIn}
             component={() => (
               <>
-                <Header />
+                <Header popup={popup} togglePopup={handleTogglePopup} />
                 <Profile
                   signOut={signOut}
                   updateUser={handleUpdateUser}
@@ -395,7 +402,7 @@ function App() {
             <NotFoundPage />
           </Route>
         </Switch>
-        <PopupMenu />
+        <PopupMenu popup={popup} togglePopup={handleTogglePopup} />
       </div>
       {isLoading && <BlockAction />}
     </CurrentUserContext.Provider>
