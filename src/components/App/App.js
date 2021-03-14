@@ -180,10 +180,6 @@ function App() {
       });
   }
 
-  useEffect(() => {
-    loggedIn && handleGetUserMovies();
-  }, [loggedIn]);
-
   // Сохранение юзером фильмов
   function handleSaveMovie(newMovie) {
     mainApi
@@ -193,7 +189,7 @@ function App() {
         setUserCards(newUserCards);
       })
       .catch((err) => {
-        /*mainApi.setErrorServer(err);*/
+        console.log(err);
       })
       .finally(() => {});
   }
@@ -220,13 +216,17 @@ function App() {
 
   /*Обработчик регистрации*/
   function handleAuthRegister(nameUser, email, password) {
+    setIsLoading(true);
     auth
       .register(nameUser, email, password)
-      .then((res) => {
+      .then(() => {
         handleAuthLogin(email, password);
       })
       .catch((err) => {
         showError(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
