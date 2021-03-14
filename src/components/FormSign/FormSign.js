@@ -1,13 +1,25 @@
 import logo from '../../images/logo.svg';
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../customHook/useForm';
 import './FormSign.css';
 
 const FormSign = memo(
-  ({ name, title, onSubmit, isLoading, btnName, changeCurrUrl }) => {
+  ({
+    name,
+    title,
+    onSubmit,
+    isLoading,
+    btnName,
+    textError,
+    clearTextError,
+  }) => {
     const form = useForm();
+
+    useEffect(() => {
+      clearTextError();
+    }, [name]);
 
     return (
       <form
@@ -81,6 +93,13 @@ const FormSign = memo(
           <span className="form__error">{`${
             form.errors.password ? form.errors.password : ''
           }`}</span>
+          <span
+            className={`form__text-error ${
+              textError && 'form__text-error_visible'
+            }`}
+          >
+            {textError && textError}
+          </span>
           <button
             type="submit"
             className={`form__btn ${!form.isValid && 'form__btn_disabled'}`}

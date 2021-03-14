@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { httpCheck } from '../../utils/httpCheck';
 import './Movies.css';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 const IMAGE_URL = 'https://api.nomoreparties.co';
+const IMAGE_DEFAULT =
+  'https://image.prntscr.com/image/Q2M96WKKT7adYRa3m0b-Rg.png';
 
 function Movies({
   cards,
@@ -19,13 +21,9 @@ function Movies({
   onSearch,
   onFilter,
   isShortMovie,
+  textError,
+  clearTextError,
 }) {
-  function httpCheck(value) {
-    return !/(^https?:\/\/)?[a-z0-9~_\-\.]+\.[a-z]{2,9}(\/|:|\?[!-~]*)?$/i.test(
-      value
-    );
-  }
-
   const newMoviesList = cards.map((movie) => {
     return {
       movieId: String(movie.id),
@@ -38,15 +36,14 @@ function Movies({
         ? movie.description
         : 'Не указано описание',
       duration: movie.duration ? movie.duration : 'Не указано время',
-      image: movie.image
-        ? IMAGE_URL + movie.image.url
-        : 'https://st4.depositphotos.com/2381417/26959/i/600/depositphotos_269592714-stock-photo-thumbnail-image-placeholder-forums-blogs.jpg',
-      trailer: !httpCheck(movie.trailerLink)
-        ? movie.trailerLink
-        : 'https://st4.depositphotos.com/2381417/26959/i/600/depositphotos_269592714-stock-photo-thumbnail-image-placeholder-forums-blogs.jpg',
+      image: movie.image ? IMAGE_URL + movie.image.url : IMAGE_DEFAULT,
+      trailer:
+        movie.trailerLink && httpCheck(movie.trailerLink)
+          ? movie.trailerLink
+          : IMAGE_DEFAULT,
       thumbnail: movie.image
         ? IMAGE_URL + movie.image.formats.thumbnail.url
-        : 'https://st4.depositphotos.com/2381417/26959/i/600/depositphotos_269592714-stock-photo-thumbnail-image-placeholder-forums-blogs.jpg',
+        : IMAGE_DEFAULT,
     };
   });
 
@@ -68,8 +65,11 @@ function Movies({
           deleteUserMovie={deleteUserMovie}
           isLoading={isLoading}
           onSearch={onSearch}
+          searchTrigger={searchTrigger}
           countMoviesToPage={countMoviesToPage}
           handleCountMovies={handleCountMovies}
+          textError={textError}
+          clearTextError={clearTextError}
         />
       </div>
     </div>

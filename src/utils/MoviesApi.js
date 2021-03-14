@@ -1,16 +1,14 @@
+import { definitionError } from './definitionError';
+
 class MoviesApi {
   constructor({ baseUrl, headers, credentials }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._errorServer = document.querySelector(".error-server");
+    this._errorServer = document.querySelector('.error-server');
   }
 
-  // Получение ответа от сервера, иначе ошибка
   _getResponseData(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(new Error(`Ошибка: ${res.status}`)); // если ошибка при запросе, переходим к catch
+    return definitionError(res);
   }
 
   // Получение начальных карточек
@@ -24,8 +22,8 @@ class MoviesApi {
 }
 
 export const moviesApi = new MoviesApi({
-  baseUrl: "https://api.nomoreparties.co/beatfilm-movies",
+  baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });

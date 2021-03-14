@@ -1,6 +1,5 @@
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { useEffect } from 'react';
 
 function SavedMovies({
   userCards,
@@ -13,11 +12,8 @@ function SavedMovies({
   handleCountMovies,
   isShortMovie,
   onFilter,
-  page = {},
+  textError,
 }) {
-  /*useEffect(() => {
-    searchTrigger(false);
-  }, []);*/
   return (
     <div className="movies">
       <div className="movies__container">
@@ -36,7 +32,9 @@ function SavedMovies({
           onSearch={onSearch}
           countMoviesToPage={countMoviesToPage}
           handleCountMovies={handleCountMovies}
+          searchTrigger={searchTrigger}
           page={'saved-movies'}
+          textError={textError}
         />
       </div>
     </div>

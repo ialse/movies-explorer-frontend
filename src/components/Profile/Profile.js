@@ -1,14 +1,12 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useForm } from '../../customHook/useForm';
+import Preloader from '../Preloader/Preloader';
 
 import './Profile.css';
 
-function Profile({ signOut, updateUser }) {
+function Profile({ signOut, updateUser, isLoading, textError }) {
   const currentUser = useContext(CurrentUserContext);
-
-  /*const [name, setName] = useState(currentUser.name || "Имя");
-  const [email, setEmail] = useState(currentUser.email || "Почта");*/
   const form = useForm({ name: currentUser.name, email: currentUser.email });
 
   function handleSubmit(e) {
@@ -18,13 +16,7 @@ function Profile({ signOut, updateUser }) {
       email: form.values.email,
     });
   }
-
-  /* function handleChange(e) {
-    const { name, value } = e.target;
-
-    name === "name" ? setName(value) : setEmail(value);
-  }*/
-
+  console.log(textError);
   return (
     <section className="profile">
       <div className="profile__container">
@@ -65,6 +57,14 @@ function Profile({ signOut, updateUser }) {
           <div className="profile__error">{`${
             form.errors.email ? form.errors.email : ''
           }`}</div>
+          <div className="profile__preloader">{isLoading && <Preloader />}</div>
+          <span
+            className={`profile__text-error ${
+              textError && 'profile__text-error_visible'
+            }`}
+          >
+            {textError && textError}
+          </span>
           <button
             type="submit"
             className={`profile__btn-edit ${

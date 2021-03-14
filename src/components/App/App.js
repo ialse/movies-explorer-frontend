@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import {
+  Route,
+  Redirect,
+  Switch,
+  useHistory,
+  useLocation,
+} from 'react-router-dom';
 import './App.css';
 
 import Preloader from '../Preloader/Preloader';
@@ -17,6 +23,7 @@ import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import * as auth from '../../utils/auth';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import BlockAction from '../BlockAction/BlockAction';
 
 import { moviesApi } from '../../utils/MoviesApi';
 import { mainApi } from '../../utils/MainApi';
@@ -40,6 +47,7 @@ function App() {
   const [isTokenChecked, setIsTokenChecked] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [textError, setTextError] = useState('');
 
   // стейт для режима короткометражек
   const [isShortMovie, setIsShortMovie] = useState(false);
@@ -66,6 +74,14 @@ function App() {
     handleResize();
     window.addEventListener('resize', handleResize);
   }, []);
+
+  /*Отображение ошибки*/
+  function showError(err) {
+    if (err.message === 'Failed to fetch') {
+      err.message = 'Нет соединения. Попробуйте позже';
+    }
+    setTextError(err.message);
+  }
 
   /*Был ли поиск. Нужно для определения что ставить на страницу: карточки или текст*/
   function handleSearchTrigger(onSearch) {
@@ -119,7 +135,7 @@ function App() {
         localStorage.setItem('prevMovies', JSON.stringify(filterCards));
       })
       .catch((err) => {
-        console.log(err);
+        showError(err);
       })
       .finally(() => setIsLoading(false));
   }
@@ -129,18 +145,23 @@ function App() {
     setInputFilterSearch(inputSearch);
   }
 
+  /*Очищение текста ошибки*/
+  useEffect(() => {
+    clearTextError();
+  }, [cards, location]);
+
   // ****** Обработчики для нашего API ******
   // Обработчик кнопки Редактировать на странице профиля
   function handleUpdateUser(newUserInfo) {
-    /*setIsLoading(true);*/
+    setIsLoading(true);
     mainApi
       .saveUserInfoToServer(newUserInfo)
       .then((userData) => setCurrentUser(userData))
       .catch((err) => {
-        /*api.setErrorServer(err);*/
+        showError(err);
       })
       .finally(() => {
-        /*setIsLoading(false);*/
+        setIsLoading(false);
       });
   }
 
@@ -152,13 +173,13 @@ function App() {
         setUserCards(userSavedMovies);
       })
       .catch((err) => {
-        console.log(err);
+        showError(err);
       });
   }
 
   useEffect(() => {
-    handleGetUserMovies();
-  }, []);
+    loggedIn && handleGetUserMovies();
+  }, [loggedIn]);
 
   // Сохранение юзером фильмов
   function handleSaveMovie(newMovie) {
@@ -193,29 +214,32 @@ function App() {
       });
   }
 
+  function clearTextError() {
+    setTextError('');
+  }
+
   /*Обработчик регистрации*/
   function handleAuthRegister(nameUser, email, password) {
     auth
       .register(nameUser, email, password)
       .then((res) => {
-        if (res.email) {
-          handleAuthLogin(email, password);
-          return;
-        }
-        return res;
+        handleAuthLogin(email, password);
       })
       .catch((err) => {
-        console.log(err);
+        showError(err);
       });
   }
 
   /*Обработчик логина*/
   function handleAuthLogin(email, password) {
-    return auth.authorize(email, password).then((data) => {
-      if (data) {
+    return auth
+      .authorize(email, password)
+      .then(() => {
         tokenCheck();
-      }
-    });
+      })
+      .catch((err) => {
+        showError(err);
+      });
   }
 
   /*Обработчик авторизации*/
@@ -287,6 +311,8 @@ function App() {
                   handleCountMovies={handleCountMovies}
                   onFilter={handleOnFilter}
                   searchTrigger={handleSearchTrigger}
+                  textError={textError}
+                  clearTextError={clearTextError}
                 />
                 <Footer />
               </>
@@ -321,6 +347,7 @@ function App() {
                   searchTrigger={handleSearchTrigger}
                   handleCountMovies={handleCountMovies}
                   onFilter={handleOnFilter}
+                  textError={textError}
                 />
                 <Footer />
               </>
@@ -333,15 +360,36 @@ function App() {
             component={() => (
               <>
                 <Header />
-                <Profile signOut={signOut} updateUser={handleUpdateUser} />
+                <Profile
+                  signOut={signOut}
+                  updateUser={handleUpdateUser}
+                  isLoading={isLoading}
+                  textError={textError}
+                />
               </>
             )}
           />
           <Route exact path="/sign-up">
-            <Register authRegister={handleAuthRegister} />
+            {loggedIn ? (
+              <Redirect to="/movies" />
+            ) : (
+              <Register
+                authRegister={handleAuthRegister}
+                textError={textError}
+                clearTextError={clearTextError}
+              />
+            )}
           </Route>
           <Route exact path="/sign-in">
-            <Login authLogin={handleAuthLogin} />
+            {loggedIn ? (
+              <Redirect to="/movies" />
+            ) : (
+              <Login
+                authLogin={handleAuthLogin}
+                textError={textError}
+                clearTextError={clearTextError}
+              />
+            )}
           </Route>
           <Route exact path="/*">
             <NotFoundPage />
@@ -349,6 +397,7 @@ function App() {
         </Switch>
         <PopupMenu />
       </div>
+      {isLoading && <BlockAction />}
     </CurrentUserContext.Provider>
   );
 }

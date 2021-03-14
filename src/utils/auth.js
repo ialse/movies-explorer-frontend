@@ -1,3 +1,4 @@
+import { definitionError } from './definitionError';
 export const BASE_URL = 'http://localhost:3000'; //"https://api.ialse-movies.students.nomoredomains.rocks";
 
 export const register = (nameUser, email, password) => {
@@ -9,10 +10,7 @@ export const register = (nameUser, email, password) => {
     body: JSON.stringify({ name: nameUser, email, password }),
     credentials: 'include',
   }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(new Error(`Ошибка: ${res.status}`)); // если ошибка при запросе, переходим к catch
+    return definitionError(res);
   });
 };
 
@@ -25,10 +23,7 @@ export const authorize = (email, password) => {
     body: JSON.stringify({ email, password }),
     credentials: 'include',
   }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(new Error(`Ошибка: ${res.status}`));
+    return definitionError(res);
   });
 };
 
@@ -40,10 +35,7 @@ export const getContent = () => {
     },
     credentials: 'include',
   }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(new Error(`Ошибка: ${res.status}`));
+    return definitionError(res);
   });
 };
 
@@ -55,9 +47,6 @@ export const logout = () => {
     },
     credentials: 'include',
   }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(new Error(`Ошибка: ${res.status}`));
+    return definitionError(res);
   });
 };

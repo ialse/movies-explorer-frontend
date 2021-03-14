@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import FormSign from '../FormSign/FormSign';
 
-const Register = memo(({ authRegister }) => {
+const Register = memo(({ authRegister, textError, clearTextError }) => {
   function handleSubmit(e, { name, email, password }) {
     e.preventDefault();
     authRegister(name, email, password);
@@ -13,6 +13,8 @@ const Register = memo(({ authRegister }) => {
       title="Добро пожаловать!"
       btnName="Зарегистрироваться"
       onSubmit={handleSubmit}
+      textError={textError}
+      clearTextError={clearTextError}
     />
   );
 });

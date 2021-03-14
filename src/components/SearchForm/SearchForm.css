@@ -22,7 +22,7 @@
   line-height: 1.11;
   font-weight: 400;
   border: none;
-  padding: 0;
+  padding: 0 0 0 10px;
   flex-grow: 1;
   display: block;
   width: 30%;
@@ -31,6 +31,7 @@
 .search__input:focus {
   border: none;
   outline: none;
+  box-shadow: inset 5px 10px 30px #222;
 }
 
 .search__button {

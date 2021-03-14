@@ -1,3 +1,5 @@
+import { definitionError } from './definitionError';
+
 class MainApi {
   constructor({ baseUrl, headers, credentials }) {
     this._baseUrl = baseUrl;
@@ -8,10 +10,7 @@ class MainApi {
 
   // Получение ответа от сервера, иначе ошибка
   _getResponseData(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(new Error(`Ошибка: ${res.status}`)); // если ошибка при запросе, переходим к catch
+    return definitionError(res);
   }
 
   // Получение юзером всех своих сохранненых карточек
@@ -42,6 +41,8 @@ class MainApi {
       headers: this._headers,
       credentials: this._credentials,
       method: 'DELETE',
+    }).then((res) => {
+      return this._getResponseData(res);
     });
   }
 

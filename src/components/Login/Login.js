@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import FormSign from '../FormSign/FormSign';
 
-const Login = memo(({ authLogin }) => {
+const Login = memo(({ authLogin, textError, clearTextError }) => {
   function handleSubmit(e, { email, password }) {
     e.preventDefault();
 
@@ -17,6 +17,8 @@ const Login = memo(({ authLogin }) => {
       title="Рады видеть!"
       btnName="Войти"
       onSubmit={handleSubmit}
+      textError={textError}
+      clearTextError={clearTextError}
     />
   );
 });

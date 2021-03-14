@@ -12,18 +12,22 @@ function MoviesCardList({
   countMoviesToPage,
   handleCountMovies,
   page,
+  textError,
+  clearTextError,
 }) {
   function handleClick() {
     handleCountMovies(countMoviesToPage.current + countMoviesToPage.add);
   }
-  console.log(cards, onSearch);
+
   return (
     <>
       <section className="cards">
         {isLoading ? (
           <Preloader />
+        ) : textError ? (
+          <div className="cards__empty">{textError}</div>
         ) : !cards.length ? (
-          <div className={`cards__empty`}>
+          <div className="cards__empty">
             {onSearch
               ? 'Ничего не найдено'
               : page === 'saved-movies'
@@ -48,7 +52,7 @@ function MoviesCardList({
         )}
       </section>
 
-      {!isLoading && countMoviesToPage.current < cards.length && (
+      {!isLoading && !textError && countMoviesToPage.current < cards.length && (
         <button className="more" onClick={handleClick}>
           Ещё
         </button>
