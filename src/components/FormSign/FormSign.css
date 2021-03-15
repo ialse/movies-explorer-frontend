@@ -13,6 +13,7 @@
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.4s ease-out;
+  margin-top: 20px;
 }
 
 .form__logo:hover {
