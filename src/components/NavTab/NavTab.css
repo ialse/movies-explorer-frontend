@@ -2,6 +2,7 @@
   display: flex;
   margin: 84px 0 0 0;
   width: 129px;
+  text-decoration: none;
 }
 
 .nav-link__button {
@@ -20,7 +21,7 @@
 }
 
 .nav-link__button::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 0;
