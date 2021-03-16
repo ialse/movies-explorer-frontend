@@ -1,5 +1,5 @@
 import { definitionError } from './definitionError';
-export const BASE_URL = 'https://api.ialse-movies.students.nomoredomains.rocks';
+export const BASE_URL = 'http://localhost:3000'; //https://api.ialse-movies.students.nomoredomains.rocks';
 
 export const register = (nameUser, email, password) => {
   return fetch(`${BASE_URL}/signup`, {

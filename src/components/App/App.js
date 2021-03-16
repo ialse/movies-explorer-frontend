@@ -29,11 +29,23 @@ import { moviesApi } from '../../utils/MoviesApi';
 import { mainApi } from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
+import {
+  DURATION_SHORTFILM,
+  COUNT_LOAD_MOVIES_3,
+  COUNT_LOAD_MOVIES_2,
+  COUNT_START_MOVIES_12,
+  COUNT_START_MOVIES_8,
+  COUNT_START_MOVIES_5,
+  DISPLAY_850,
+  DISPLAY_450,
+} from '../../constants/constants';
+
 function App() {
   const history = useHistory();
   const location = useLocation();
 
   const [currentUser, setCurrentUser] = useState({});
+  const [allCardsBeat, setAllCardsBeat] = useState([]);
   const [cards, setCards] = useState([]);
   const [userCards, setUserCards] = useState([]);
   const [shortCards, setShortCards] = useState([]);
@@ -54,7 +66,7 @@ function App() {
 
   // стейт для режима короткометражек
   const [isShortMovie, setIsShortMovie] = useState(false);
-  //стейт для установки кол-ва фильмов в зависимости от разрешения экрана
+  // стейт для установки кол-ва фильмов в зависимости от разрешения экрана
   const [countMoviesToPage, setCountMoviesToPage] = useState({
     current: 0,
     add: 0,
@@ -65,12 +77,24 @@ function App() {
       const width = document.documentElement.clientWidth;
 
       setTimeout(() => {
-        if (width > 850) {
-          setCountMoviesToPage({ ...countMoviesToPage, current: 12, add: 3 });
-        } else if (450 < width && width < 850) {
-          setCountMoviesToPage({ ...countMoviesToPage, current: 8, add: 2 });
+        if (width > DISPLAY_850) {
+          setCountMoviesToPage({
+            ...countMoviesToPage,
+            current: COUNT_START_MOVIES_12,
+            add: COUNT_LOAD_MOVIES_3,
+          });
+        } else if (DISPLAY_450 < width && width < DISPLAY_850) {
+          setCountMoviesToPage({
+            ...countMoviesToPage,
+            current: COUNT_START_MOVIES_8,
+            add: COUNT_LOAD_MOVIES_2,
+          });
         } else {
-          setCountMoviesToPage({ ...countMoviesToPage, current: 5, add: 2 });
+          setCountMoviesToPage({
+            ...countMoviesToPage,
+            current: COUNT_START_MOVIES_5,
+            add: COUNT_LOAD_MOVIES_2,
+          });
         }
       }, 500);
     }
@@ -84,6 +108,10 @@ function App() {
       err.message = 'Нет соединения. Попробуйте позже';
     }
     setTextError(err.message);
+  }
+
+  function showMessage(msg) {
+    setTextError(msg);
   }
 
   /*Был ли поиск. Нужно для определения что ставить на страницу: карточки или текст*/
@@ -112,35 +140,45 @@ function App() {
 
   /*фильтрация по времени */
   function filtrationShort(cards) {
-    return cards.filter((card) => (card.duration < 41 ? card : false));
+    return cards.filter((card) =>
+      card.duration < DURATION_SHORTFILM ? card : false
+    );
   }
 
-  /*Берем из localStorage, если там что то есть*/
+  /*Берем из localStorage, если там что то есть, иначе делаем запрос*/
   useEffect(() => {
-    if (localStorage.getItem('prevMovies')) {
-      const localCards = JSON.parse(localStorage.getItem('prevMovies'));
-      setCards(localCards);
-      const filterShortCards = filtrationShort(localCards);
+    if (localStorage.getItem('localAllMovies')) {
+      const localAllCards = JSON.parse(localStorage.getItem('localAllMovies'));
+      const localUsersCards = JSON.parse(
+        localStorage.getItem('localUsersMovies')
+      );
+      setAllCardsBeat(localAllCards);
+      setCards(localUsersCards);
+      const filterShortCards = filtrationShort(localUsersCards);
       setShortCards(filterShortCards);
+    } else {
+      setIsLoading(true);
+      moviesApi
+        .getAllCards()
+        .then((allCards) => {
+          setAllCardsBeat(allCards);
+          localStorage.setItem('localAllMovies', JSON.stringify(allCards));
+          localStorage.setItem('localUsersMovies', JSON.stringify([]));
+        })
+        .catch((err) => {
+          showError(err);
+        })
+        .finally(() => setIsLoading(false));
     }
   }, []);
 
-  /*Поиск фильмов в beatfilm*/
+  /*Поиск по всем фильмам*/
   function runSearch(inputSearch) {
-    setIsLoading(true);
-    moviesApi
-      .getAllCards()
-      .then((allCards) => {
-        const filterCards = filtrationQuery(allCards, inputSearch);
-        setCards(filterCards);
-        const filterShortCards = filtrationShort(filterCards);
-        setShortCards(filterShortCards);
-        localStorage.setItem('prevMovies', JSON.stringify(filterCards));
-      })
-      .catch((err) => {
-        showError(err);
-      })
-      .finally(() => setIsLoading(false));
+    const filterCards = filtrationQuery(allCardsBeat, inputSearch);
+    setCards(filterCards);
+    const filterShortCards = filtrationShort(filterCards);
+    setShortCards(filterShortCards);
+    localStorage.setItem('localUsersMovies', JSON.stringify(filterCards));
   }
 
   /*Поиск среди сохраненных фильмов*/
@@ -159,7 +197,10 @@ function App() {
     setIsLoading(true);
     mainApi
       .saveUserInfoToServer(newUserInfo)
-      .then((userData) => setCurrentUser(userData))
+      .then((userData) => {
+        setCurrentUser(userData);
+        showMessage('Данные успешно обновлены!');
+      })
       .catch((err) => {
         showError(err);
       })
@@ -270,7 +311,7 @@ function App() {
   }, []);
 
   /*Обработчик выхода. Очищаю все стейты, чтобы при заходе
-   в другой аккант не отображалась лишняя информация*/
+   в другой аккант с этого же компа не отображалась лишняя информация*/
   function signOut() {
     auth.logout();
     setLoggedIn(false);
@@ -278,7 +319,8 @@ function App() {
     setUserCards([]);
     setInputFilterSearch('');
     setIsShortMovie(false);
-    localStorage.removeItem('prevMovies');
+    /*По условию задания карточки в базе Beat не менются, поэтому LS и стейт с ними не очищаю*/
+    localStorage.removeItem('localUsersMovies');
     history.push('/');
   }
 
