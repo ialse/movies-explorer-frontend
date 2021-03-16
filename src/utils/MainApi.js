@@ -70,7 +70,7 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-  baseUrl: 'http://localhost:3000', //'https://api.ialse-movies.students.nomoredomains.rocks',
+  baseUrl: 'https://api.ialse-movies.students.nomoredomains.rocks',
   headers: {
     'Content-Type': 'application/json',
   },
