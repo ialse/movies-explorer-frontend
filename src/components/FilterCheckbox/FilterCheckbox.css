@@ -1,0 +1,53 @@
+.filter {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  margin-right: 30px;
+}
+
+.filter__button {
+  width: 36px;
+  height: 20px;
+  background-color: #2f2f2f;
+  background-image: url('../../images/filter-off.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 14px 0 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.filter__button_on {
+  background-image: url('../../images/filter.svg');
+  transition: all 0.5s ease-out;
+  outline: none;
+}
+
+.filter__name {
+  font-size: 14px;
+  line-height: 1.38;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 800px) {
+  .filter__name {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .filter {
+    position: absolute;
+    margin-right: 0;
+    top: 118px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .filter__name {
+    font-size: 11px;
+  }
+}
