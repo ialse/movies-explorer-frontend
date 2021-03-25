@@ -38,14 +38,22 @@
 }
 
 .portfolio__link-site {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.portfolio__img {
   height: 41px;
   width: 29px;
-  background-image: url("../../images/link.svg");
+  background-image: url('../../images/link.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  opacity: 1;
-  transition: opacity 0.5s ease-out;
 }
 
 .portfolio__link-site:hover {
@@ -69,7 +77,7 @@
     line-height: 1.55;
   }
 
-  .portfolio__link-site {
+  .portfolio__img {
     height: 28px;
     width: 18px;
   }

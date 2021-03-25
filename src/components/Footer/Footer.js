@@ -13,7 +13,7 @@ function Footer() {
           <div className="footer__links">
             <a
               className="footer__link"
-              href="https://github.com/ialse/how-to-learn"
+              href="https://praktikum.yandex.ru/"
               target="_blank"
               rel="noreferrer"
             >
@@ -25,7 +25,7 @@ function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              Facebook
+              VK
             </a>
             <a
               className="footer__link footer__link_github"
