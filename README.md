@@ -1,4 +1,4 @@
-# Музыкальные фильмы. Фронтенд
+# Movies Explorer. Фронтенд
 
 ## Ссылка на проект: https://movies-ialse.students.nomoredomains.rocks
 

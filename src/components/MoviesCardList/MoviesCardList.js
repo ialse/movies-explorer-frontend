@@ -31,7 +31,7 @@ function MoviesCardList({
               ? 'Ничего не найдено'
               : page === 'saved-movies'
               ? 'Добавьте сюда фильмы'
-              : ''}
+              : 'Здесь появятся фильмы после поиска'}
           </div>
         ) : (
           <div className={`cards__container`}>
