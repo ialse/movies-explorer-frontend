@@ -1,8 +1,8 @@
 import { definitionError } from './definitionError';
-export const BASE_URL = 'https://api.movies-ialse.students.nomoredomains.rocks';
+import { URL_MAIN } from '../constants/constants';
 
 export const register = (nameUser, email, password) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${URL_MAIN}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export const register = (nameUser, email, password) => {
 };
 
 export const authorize = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${URL_MAIN}/signin`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const authorize = (email, password) => {
 };
 
 export const getContent = () => {
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`${URL_MAIN}/users/me`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ export const getContent = () => {
 };
 
 export const logout = () => {
-  return fetch(`${BASE_URL}/signout`, {
+  return fetch(`${URL_MAIN}/signout`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

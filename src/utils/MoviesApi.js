@@ -1,4 +1,5 @@
 import { definitionError } from './definitionError';
+import { URL_BEATFILM } from '../constants/constants';
 
 class MoviesApi {
   constructor({ baseUrl, headers, credentials }) {
@@ -22,7 +23,7 @@ class MoviesApi {
 }
 
 export const moviesApi = new MoviesApi({
-  baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
+  baseUrl: URL_BEATFILM,
   headers: {
     'Content-Type': 'application/json',
   },

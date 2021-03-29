@@ -1,4 +1,5 @@
 import { definitionError } from './definitionError';
+import { URL_MAIN } from '../constants/constants';
 
 class MainApi {
   constructor({ baseUrl, headers, credentials }) {
@@ -70,7 +71,7 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-  baseUrl: 'https://api.movies-ialse.students.nomoredomains.rocks',
+  baseUrl: URL_MAIN,
   headers: {
     'Content-Type': 'application/json',
   },

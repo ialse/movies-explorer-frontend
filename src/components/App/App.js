@@ -146,12 +146,15 @@ function App() {
   }
 
   /*Берем из localStorage, если там что то есть, иначе делаем запрос*/
-  useEffect(() => {
+  function initialMovies() {
     if (localStorage.getItem('localAllMovies')) {
       const localAllCards = JSON.parse(localStorage.getItem('localAllMovies'));
-      const localUsersCards = JSON.parse(
-        localStorage.getItem('localUsersMovies')
-      );
+      let localUsersCards = [];
+      if (localStorage.getItem('localUsersMovies')) {
+        localUsersCards = JSON.parse(localStorage.getItem('localUsersMovies'));
+      } else {
+        localStorage.setItem('localUsersMovies', JSON.stringify([]));
+      }
       setAllCardsBeat(localAllCards);
       setCards(localUsersCards);
       const filterShortCards = filtrationShort(localUsersCards);
@@ -170,7 +173,7 @@ function App() {
         })
         .finally(() => setIsLoading(false));
     }
-  }, []);
+  }
 
   /*Поиск по всем фильмам*/
   function runSearch(inputSearch) {
@@ -190,6 +193,11 @@ function App() {
   useEffect(() => {
     clearTextError();
   }, [cards, location]);
+
+  /*Очищение текста*/
+  useEffect(() => {
+    setOnSearch(false);
+  }, [location]);
 
   // ****** Обработчики для нашего API ******
   // Обработчик кнопки Редактировать на странице профиля
@@ -295,6 +303,7 @@ function App() {
       .then((res) => {
         setLoggedIn(true);
         setCurrentUser(res);
+        initialMovies();
         handleGetUserMovies();
         location.pathname === '/sign-in' || location.pathname === '/sign-up'
           ? history.push('/movies')
@@ -318,6 +327,7 @@ function App() {
     setCards([]);
     setUserCards([]);
     setInputFilterSearch('');
+    setOnSearch(false);
     setIsShortMovie(false);
     /*По условию задания карточки в базе Beat не менются, поэтому LS и стейт с ними не очищаю*/
     localStorage.removeItem('localUsersMovies');
