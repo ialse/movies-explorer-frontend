@@ -102,7 +102,7 @@ const FormSign = memo(
           </span>
           <button
             type="submit"
-            className={`form__btn ${!form.isValid && 'form__btn_disabled'}`}
+            className={`form__btn ${!form.isValid ? 'form__btn_disabled' : ''}`}
             disabled={!form.isValid}
           >
             {btnName}

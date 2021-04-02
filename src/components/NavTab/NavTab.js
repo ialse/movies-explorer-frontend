@@ -14,10 +14,6 @@ function NavTab() {
     >
       <button className="nav-link__button">Узнать больше</button>
     </a>
-
-    /*<Link to="about-project" className="nav-link" smooth={easeInOutQuint}>
-      <button className="nav-link__button">Узнать больше</button>
-    </Link>*/
   );
 }
 
