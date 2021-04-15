@@ -1,7 +1,7 @@
 import searchPic from '../../images/search-pic.svg';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 function SearchForm({
   runSearch,
@@ -12,6 +12,7 @@ function SearchForm({
   onFilter,
   isShortMovie,
 }) {
+  console.log('SearchForm');
   const [inputSearch, setInputSearch] = useState('');
   const [isValid, setIsValid] = useState(true);
 
@@ -35,6 +36,7 @@ function SearchForm({
   }
 
   function handleChange(e) {
+    console.log('SearchForm handleChange');
     setInputSearch(e.target.value);
     if (e.target.value) {
       setIsValid(true);
@@ -52,12 +54,13 @@ function SearchForm({
         <img className="search__pic" src={searchPic} alt="Поиск"></img>
         <input
           className="search__input"
+          id="search"
           type="text"
           name="search"
           placeholder="Введите название фильма"
           required
           onChange={handleChange}
-          value={inputSearch}
+          value={inputSearch || ''}
         />
         <button className="search__button" type="submit"></button>
         <div className="search__separator"></div>

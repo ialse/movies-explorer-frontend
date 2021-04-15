@@ -14,6 +14,7 @@ function MoviesCardList({
   page,
   textError,
 }) {
+  console.log('MoviesCardList');
   function handleClick() {
     handleCountMovies(countMoviesToPage.current + countMoviesToPage.add);
   }

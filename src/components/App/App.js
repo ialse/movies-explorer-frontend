@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   Route,
   Redirect,
@@ -345,89 +345,68 @@ function App() {
   ) : (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
+        {loggedIn && location.pathname != '/' && (
+          <Header togglePopup={handleTogglePopup} />
+        )}
         <Switch>
           <Route exact path="/">
             <HeaderNoAuth />
             <Main />
-            <Footer />
           </Route>
           <ProtectedRoute
             exact
             path="/movies"
             loggedIn={loggedIn}
-            component={() => (
-              <>
-                <Header togglePopup={handleTogglePopup} />
-                <Movies
-                  cards={isShortMovie ? shortCards : cards}
-                  userCards={userCards}
-                  isLoading={isLoading}
-                  countMoviesToPage={countMoviesToPage}
-                  isShortMovie={isShortMovie}
-                  onSearch={onSearch}
-                  runSearch={runSearch}
-                  saveMovie={handleSaveMovie}
-                  deleteUserMovie={handleDeleteUserMovie}
-                  handleCountMovies={handleCountMovies}
-                  onFilter={handleOnFilter}
-                  searchTrigger={handleSearchTrigger}
-                  textError={textError}
-                  clearTextError={clearTextError}
-                />
-                <Footer />
-              </>
-            )}
+            cards={isShortMovie ? shortCards : cards}
+            userCards={userCards}
+            isLoading={isLoading}
+            countMoviesToPage={countMoviesToPage}
+            isShortMovie={isShortMovie}
+            onSearch={onSearch}
+            runSearch={runSearch}
+            saveMovie={handleSaveMovie}
+            deleteUserMovie={handleDeleteUserMovie}
+            handleCountMovies={handleCountMovies}
+            onFilter={handleOnFilter}
+            searchTrigger={handleSearchTrigger}
+            textError={textError}
+            clearTextError={clearTextError}
+            component={Movies}
           />
           <ProtectedRoute
             exact
             path="/saved-movies"
             loggedIn={loggedIn}
-            component={() => (
-              <>
-                <Header popup={popup} togglePopup={handleTogglePopup} />
-                <SavedMovies
-                  userCards={
-                    inputFilterSearch && isShortMovie
-                      ? filtrationQuery(
-                          filtrationShort(userCards),
-                          inputFilterSearch
-                        )
-                      : inputFilterSearch
-                      ? filtrationQuery(userCards, inputFilterSearch)
-                      : isShortMovie
-                      ? filtrationShort(userCards)
-                      : userCards
-                  }
-                  inputFilterSearch={inputFilterSearch}
-                  onSearch={onSearch}
-                  countMoviesToPage={countMoviesToPage}
-                  isShortMovie={isShortMovie}
-                  deleteUserMovie={handleDeleteUserMovie}
-                  runSearchSavedMovies={runSearchSavedMovies}
-                  searchTrigger={handleSearchTrigger}
-                  handleCountMovies={handleCountMovies}
-                  onFilter={handleOnFilter}
-                  textError={textError}
-                />
-                <Footer />
-              </>
-            )}
+            userCards={
+              inputFilterSearch && isShortMovie
+                ? filtrationQuery(filtrationShort(userCards), inputFilterSearch)
+                : inputFilterSearch
+                ? filtrationQuery(userCards, inputFilterSearch)
+                : isShortMovie
+                ? filtrationShort(userCards)
+                : userCards
+            }
+            inputFilterSearch={inputFilterSearch}
+            onSearch={onSearch}
+            countMoviesToPage={countMoviesToPage}
+            isShortMovie={isShortMovie}
+            deleteUserMovie={handleDeleteUserMovie}
+            runSearchSavedMovies={runSearchSavedMovies}
+            searchTrigger={handleSearchTrigger}
+            handleCountMovies={handleCountMovies}
+            onFilter={handleOnFilter}
+            textError={textError}
+            component={SavedMovies}
           />
           <ProtectedRoute
             exact
             path="/profile"
             loggedIn={loggedIn}
-            component={() => (
-              <>
-                <Header popup={popup} togglePopup={handleTogglePopup} />
-                <Profile
-                  signOut={signOut}
-                  updateUser={handleUpdateUser}
-                  isLoading={isLoading}
-                  textError={textError}
-                />
-              </>
-            )}
+            signOut={signOut}
+            updateUser={handleUpdateUser}
+            isLoading={isLoading}
+            textError={textError}
+            component={Profile}
           />
           <Route exact path="/sign-up">
             {loggedIn ? (
@@ -455,6 +434,7 @@ function App() {
             <NotFoundPage />
           </Route>
         </Switch>
+        {loggedIn && location.pathname != '/profile' && <Footer />}
         <PopupMenu popup={popup} togglePopup={handleTogglePopup} />
       </div>
       {isLoading && <BlockAction isLoading={isLoading} />}
